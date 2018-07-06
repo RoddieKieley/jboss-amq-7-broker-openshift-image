@@ -28,8 +28,8 @@ objects:
     name: ${AMQ_NAME}-amq-jolokia
   spec:
     ports:
-    - port: 8161
-      targetPort: 8161
+    - port: 8778
+      targetPort: 8778
     selector:
       deploymentConfig: ${APPLICATION_NAME}-amq
 - apiVersion: v1
@@ -142,8 +142,8 @@ objects:
               - "/opt/amq/bin/readinessProbe.sh"            
           name: ${APPLICATION_NAME}-amq
           ports:
-          - containerPort: 8161
-            name: console-jolokia
+          - containerPort: 8778
+            name: jolokia
             protocol: TCP
           - containerPort: 5672
             name: amqp

@@ -101,7 +101,7 @@ ports:
     - value: 5672
     - value: 5672
     - value: 1883
-    - value: 8161
+    - value: 8778
     - value: 9876
     - value: 61613
     - value: 61612

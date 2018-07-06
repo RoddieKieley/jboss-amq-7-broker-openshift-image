@@ -12,6 +12,7 @@ export BROKER_IP=`hostname -I | cut -f 1 -d ' '`
 CONFIG_TEMPLATES=/config_templates
 #Set the memory options
 JAVA_OPTS="$(adjust_java_options ${JAVA_OPTS})"
+JAVA_OPTS="${JAVA_OPTS} $(/opt/jolokia/jolokia-opts)"
 
 #GC Option conflicts with the one already configured.
 JAVA_OPTS=$(echo $JAVA_OPTS | sed -e "s/-XX:+UseParallelOldGC/ /")
@@ -202,7 +203,7 @@ function configure() {
     if [ "$AMQ_CLUSTERED" = "true" ]; then
       modifyDiscovery
     fi
-    $AMQ_HOME/bin/configure_jolokia_access.sh ${instanceDir}/etc/jolokia-access.xml
+    $AMQ_HOME/bin/configure_jolokia_access.sh ${instanceDir}
     if [ "$AMQ_KEYSTORE_TRUSTSTORE_DIR" ]; then
       echo "Updating acceptors for SSL"
       updateAcceptors ${instanceDir}
